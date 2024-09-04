@@ -55,7 +55,18 @@ function Navbar() {
           Home
         </Link>
       </div>
-
+      <Link
+          to="/userdetails"
+          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
+        >
+          User Details
+        </Link>
+      <Link
+          to="/currentlocation"
+          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
+        >
+          Current Location
+        </Link>
       <h1 className="font-montserrat font-bold mr-5 md:ml-4 md:text-xl text-emerald-600 flex items-center gap-[1vh]">
         <FiMapPin aria-hidden="true" role="img" />
         {locations}

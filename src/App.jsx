@@ -6,6 +6,7 @@ import Login from './Components/Login/Login';
 import CurrentLocation from './Components/Dashboard/CurrentLocation';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import UserDetails from './Components/Dashboard/UserDetails';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/currentlocation" element={<CurrentLocation />} />
+          <Route path="/userdetails" element={<UserDetails />} />
         </Routes>
         <Footer/>
       </BrowserRouter>
