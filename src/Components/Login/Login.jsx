@@ -1,17 +1,33 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      navigate('/dashboard');
+      const { data } = await axios.post(
+        "http://localhost:8000/api/auth/signin",
+        {
+          email,
+          password,
+        }
+      );
+      console.log(data);
+      if (data.success && data.role == "Admin") {
+        localStorage.setItem("token", data.token);
+        navigate("/dashboard");
+      } else {
+        alert("Access denied: Admins only.");
+      }
     } catch (error) {
       console.error("Login failed:", error);
+      alert(`An error occurred: ${error.message}`);
     }
   };
 
@@ -22,7 +38,9 @@ function Login() {
         <h3 className="text-xl mb-6">Admin Console</h3>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-gray-400 text-sm">Email Address</label>
+            <label htmlFor="email" className="block text-gray-400 text-sm">
+              Email Address
+            </label>
             <input
               type="email"
               id="email"
@@ -33,7 +51,9 @@ function Login() {
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="password" className="block text-gray-400 text-sm">Password</label>
+            <label htmlFor="password" className="block text-gray-400 text-sm">
+              Password
+            </label>
             <input
               type="password"
               id="password"
