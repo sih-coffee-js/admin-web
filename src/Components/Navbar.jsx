@@ -1,59 +1,58 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiMapPin } from "react-icons/fi"; // Importing icons from react-icons
+import { FiMapPin } from "react-icons/fi";
 
 function Navbar() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [locations, setLocation] = useState("Location");
+  const [locations, setLocation] = useState("Loading...");
 
-  const handleToggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  useEffect(() => {
+    if (navigator.geolocation) {
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      };
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          fetch(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${lon},${lat}.json?access_token=pk.eyJ1Ijoic2h1ZW5jZSIsImEiOiJjbG9wcmt3czMwYnZsMmtvNnpmNTRqdnl6In0.vLBhYMBZBl2kaOh1Fh44Bw`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              const city = data.features[0].context.find((context) =>
+                context.id.includes("place")
+              ).text;
+              const state = data.features[0].context.find((context) =>
+                context.id.includes("region")
+              ).text;
+              setLocation(`${city}, ${state}`);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        },
+        (error) => {
+          console.error(error);
+        },
+        options
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, []);
 
   return (
     <div className="flex items-center justify-between border-b">
-      <div className="flex flex-grow justify-center">
+      <div className="flex flex-grow justify-start">
         <Link
           to="/"
           className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
         >
           Home
-        </Link>
-        <Link
-          to="/about"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          About
-        </Link>
-        <Link
-          to="/facilities"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          E-Facilities
-        </Link>
-        <Link
-          to="/recycle"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          Recycle
-        </Link>
-        <Link
-          to="/ewaste"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          E-Waste
-        </Link>
-        <Link
-          to="/contact"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          Contact Us
-        </Link>
-        <Link
-          to="/rules"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          Rules
         </Link>
       </div>
 
