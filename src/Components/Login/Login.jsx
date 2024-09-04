@@ -15,7 +15,7 @@ function Login() {
         "http://localhost:8000/api/auth/signin",
         {
           email,
-          password,
+          password
         }
       );
       console.log(data);
@@ -32,8 +32,8 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white text-black">
-      <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-screen bg-white text-black bg-[url(https://gegosoft.com/wp-content/uploads/2021/03/student_attendance_app.jpg)] bg-cover">
+      <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg w-full max-w-sm mb-[220px]">
         <h2 className="text-2xl font-bold mb-4">Geo Track</h2>
         <h3 className="text-xl mb-6">Admin Console</h3>
         <form onSubmit={handleSubmit} className="space-y-6">
