@@ -10,6 +10,16 @@ import UserDetails from './Components/Dashboard/UserDetails';
 import TrackRecords from './Components/Dashboard/TrackRecords';
 
 function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <>
@@ -26,7 +36,7 @@ function App() {
         <Footer/>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

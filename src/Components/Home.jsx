@@ -34,8 +34,8 @@ const Home = () => {
           </div>
           <br></br>
           <div>
-          <button className="text-4xl bg-blue-500 text-white py-2 px-10 w-40 rounded-md" 
-          onClick={() => window.location.href = '/login'}>Login</button>
+            <button className="text-4xl bg-blue-500 text-white py-2 px-10 w-40 rounded-md" 
+            onClick={() => window.location.href = '/login'}>Login</button>
           </div>
         </div>
 
