@@ -1,10 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiMapPin } from "react-icons/fi";
 
 function Navbar() {
   const [locations, setLocation] = useState("Loading...");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -43,13 +42,6 @@ function Navbar() {
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
-    }
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
     }
   }, []);
 

@@ -9,17 +9,8 @@ import Footer from './Components/Footer';
 import UserDetails from './Components/Dashboard/UserDetails';
 import TrackRecords from './Components/Dashboard/TrackRecords';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
-  );
-}
 
-function AppContent() {
-  const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+function App() {
 
   return (
     <>
