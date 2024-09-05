@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FiMapPin } from "react-icons/fi";
 
 function Navbar() {
   const [locations, setLocation] = useState("Loading...");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -45,6 +46,13 @@ function Navbar() {
     }
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
     <div className="flex items-center justify-between border-b">
       <div className="flex flex-grow justify-start">
@@ -55,18 +63,20 @@ function Navbar() {
           Home
         </Link>
       </div>
-      <Link
+      {isLoggedIn && ( // Conditionally rendering User Details when logged in
+        <Link
           to="/userdetails"
           className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
         >
           User Details
         </Link>
+      )}
       <Link
-          to="/currentlocation"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          Current Location
-        </Link>
+        to="/currentlocation"
+        className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
+      >
+        Current Location
+      </Link>
       <h1 className="font-montserrat font-bold mr-5 md:ml-4 md:text-xl text-emerald-600 flex items-center gap-[1vh]">
         <FiMapPin aria-hidden="true" role="img" />
         {locations}
