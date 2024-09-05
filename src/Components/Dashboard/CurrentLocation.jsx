@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import SideBarLayout from './SideBarLayout';
 
 const CurrentLocation = () => {
   const [address, setAddress] = useState("");
@@ -58,67 +59,59 @@ const CurrentLocation = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Submit Your Current Location</h1>
-      <form onSubmit={handleSubmit} className="p-6 w-full max-w-lg">
-        {/* Building Name */}
-        <div className="mb-4">
-          <label htmlFor="buildingName" className="block text-gray-700 font-semibold mb-2">
-            Building Name:
-          </label>
-          <input
-            type="text"
-            id="buildingName"
-            value={buildingName}
-            onChange={(e) => setBuildingName(e.target.value)}
-            className="w-full p-2 border rounded"
-            placeholder="Enter building name"
-          />
-        </div>
-
-        {/* Location */}
-        <div className="mb-4">
-          <label htmlFor="address" className="block text-gray-700 font-semibold mb-2">
-            Current Location:
-          </label>
-          <div className="flex">
+    <SideBarLayout currentView="currentLocation" setCurrentView={() => {}}>
+      <div className="flex flex-col items-center min-h-screen text-gray-100 bg-gray-900 p-6">
+        <h1 className="text-4xl font-bold mb-4">Submit Your Current Location</h1>
+        <form onSubmit={handleSubmit} className="p-6 w-full max-w-lg bg-gray-800 rounded-lg shadow-lg">
+          {/* Building Name */}
+          <div className="mb-4">
+            <label htmlFor="buildingName" className="block text-gray-300 font-semibold mb-2">
+              Building Name:
+            </label>
             <input
               type="text"
-              id="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="w-full p-2 border rounded-l"
-              placeholder="Your address will appear here or you can type it"
+              id="buildingName"
+              value={buildingName}
+              onChange={(e) => setBuildingName(e.target.value)}
+              className="w-full p-2 border rounded bg-gray-700 text-gray-300"
+              placeholder="Enter building name"
             />
-            <button
-              type="button"
-              onClick={handleGetCurrentLocation}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r"
-            >
-              Use Current Location
-            </button>
           </div>
-        </div>
 
-        {/* Coordinates Display */}
-        <div className="mb-4">
-          {coordinates.latitude && coordinates.longitude && (
-            <div className="text-sm text-gray-600">
-              <p>Latitude: {coordinates.latitude}</p>
-              <p>Longitude: {coordinates.longitude}</p>
+          {/* Location */}
+          <div className="mb-4">
+            <label htmlFor="address" className="block text-gray-300 font-semibold mb-2">
+              Current Location:
+            </label>
+            <div className="flex">
+              <input
+                type="text"
+                id="address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="w-full p-2 border rounded-l bg-gray-700 text-gray-300"
+                placeholder="Your address"
+              />
+              <button
+                type="button"
+                onClick={handleGetCurrentLocation}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r"
+              >
+                Use Current Location
+              </button>
             </div>
-          )}
-        </div>
+          </div>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded"
-        >
-          Submit Location
-        </button>
-      </form>
-    </div>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded"
+          >
+            Submit Location
+          </button>
+        </form>
+      </div>
+    </SideBarLayout>
   );
 };
 

@@ -46,29 +46,17 @@ function Navbar() {
   }, []);
 
   return (
-    <div className="flex items-center justify-between border-b">
-      <div className="flex flex-grow justify-start">
+    <div className="flex items-center justify-between p-4 border-b bg-gray-700 shadow-md">
+      <div className="flex flex-grow items-center">
         <Link
           to="/"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
+          className="text-white text-xl mx-4 hover:text-blue-400 focus:text-blue-400 transition-colors"
         >
           Home
         </Link>
       </div>
-      <Link
-          to="/userdetails"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          User Details
-        </Link>
-      <Link
-          to="/currentlocation"
-          className="text-black text-xl mx-4 hover:text-blue-400 focus:text-blue-400"
-        >
-          Current Location
-        </Link>
-      <h1 className="font-montserrat font-bold mr-5 md:ml-4 md:text-xl text-emerald-600 flex items-center gap-[1vh]">
-        <FiMapPin aria-hidden="true" role="img" />
+      <h1 className="font-bold text-white flex items-center gap-2 text-lg md:text-xl">
+        <FiMapPin aria-hidden="true" role="img" className="text-xl" />
         {locations}
       </h1>
     </div>

@@ -7,6 +7,7 @@ import CurrentLocation from './Components/Dashboard/CurrentLocation';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import UserDetails from './Components/Dashboard/UserDetails';
+import TrackRecords from './Components/Dashboard/TrackRecords';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/currentlocation" element={<CurrentLocation />} />
           <Route path="/userdetails" element={<UserDetails />} />
+          <Route path="/trackrecords" element={<TrackRecords />} />
         </Routes>
         <Footer/>
       </BrowserRouter>
