@@ -1,13 +1,19 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const SideBarLayout = ({ children, currentView, setCurrentView }) => {
   const menuItems = [
-    { name: "Home", value: "home", path: "/dashboard" },
     { name: "Users", value: "users", path: "/userdetails" },
     { name: "Current Location", value: "currentLocation", path: "/currentlocation" },
     { name: "Track Records", value: "trackrecords", path: "/trackrecords" },
     { name: "Sort by Date", value: "dateselector", path: "/dateselector" }
   ];
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    setCurrentView("users");
+    navigate("/userdetails");
+  }, [setCurrentView, navigate]);
 
   return (
     <div className="flex min-h-screen text-gray-100 bg-gray-900">
