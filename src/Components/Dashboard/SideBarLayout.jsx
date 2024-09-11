@@ -6,11 +6,11 @@ const SideBarLayout = ({ children, currentView, setCurrentView }) => {
     { name: "Users", value: "users", path: "/userdetails" },
     { name: "Current Location", value: "currentLocation", path: "/currentlocation" },
     { name: "Track Records", value: "trackrecords", path: "/trackrecords" },
+    { name: "Sort by Date", value: "dateselector", path: "/dateselector" }
   ];
 
   return (
     <div className="flex min-h-screen text-gray-100 bg-gray-900">
-      {/* Sidebar */}
       <div className="w-64 bg-gray-800 h-full p-6 flex flex-col justify-between">
         <div>
           <h2 className="text-2xl font-bold mb-6">Admin Dashboard</h2>
@@ -35,7 +35,6 @@ const SideBarLayout = ({ children, currentView, setCurrentView }) => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-grow p-8">
         {children}
       </div>
